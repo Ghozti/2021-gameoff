@@ -1,6 +1,7 @@
 package gameoff2021.game.entities;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -62,7 +63,98 @@ public abstract class GameSprite {
          */
         this.width = unScaledWidth * scale;
         this.height = unscaledHeight * scale;
+        sprite.setScale(this.scale);
+
+        //by default the hitbox width and height will be the scaled width/height
+        hitbox.width = width;
+        hitbox.height = height;
     }
 
-    //TODO fill the rest of this shit...tomorrow
+    //sometimes the hitbox will be bigger than we want it to be, so we can force it to be a certain width/height here
+    public void setHitboxDimensions(float width, float height){
+        hitbox.width = width;
+        hitbox.height = height;
+    }
+
+    //sometimes the hitbox will be positioned away from where we want it to, so we can force its offset here
+    public void setHitboxOffSet(float x, float y){
+        hitBoxOffSetX = x;
+        hitBoxOffSetY = y;
+    }
+
+    //this method is not the same as the setPosition method, this method will add to the current x and y value instead of setting it to something
+    public void updatePosition(float xChange, float yChange){
+        position[0] += xChange;
+        position[1] += yChange;
+        sprite.setPosition(position[0], position[1]);
+        hitbox.x = position[0];
+        hitbox.y = position[1];
+    }
+
+    //getters
+
+    public Sprite getSprite(){
+        return sprite;
+    }
+
+    public Rectangle getHitbox(){
+        return hitbox;
+    }
+
+    public float[] getPositionArr(){
+        return position;
+    }
+
+    public float getWidth(){
+        return width;
+    }
+
+    public float getHeight(){
+        return height;
+    }
+
+    public float getScale(){
+        return scale;
+    }
+
+    public float getUnScaledWidth(){
+        return unScaledWidth;
+    }
+
+    public float getUnscaledHeight(){
+        return unscaledHeight;
+    }
+
+    public float getHitBoxOffSetX(){
+        return hitBoxOffSetX;
+    }
+
+    public float getHitBoxOffSetY(){
+        return hitBoxOffSetY;
+    }
+
+    public TextureRegion getTexture(){
+        return texture;
+    }
+
+    //DRAWING STUFF
+    public abstract void draw(Batch batch);
+
+    //this method will be used to update the sprite for example user input
+    public abstract void update();
+
+    public void drawSprite(Batch batch){
+        sprite.draw(batch);
+    }
+
+    //will draw the hitbox if the game is in debug mode
+    public void drawHitBox(Batch batch, boolean scaleDown){
+        if (true) {//TODO set debug mode
+            if (scaleDown) {
+                batch.draw(debugTexture, (hitbox.x + hitBoxOffSetX) - width / scale, (hitbox.y + hitBoxOffSetY) - height / scale, hitbox.width, hitbox.height);
+            }else {
+                batch.draw(debugTexture, hitbox.x + hitBoxOffSetX, hitbox.y + hitBoxOffSetY, hitbox.width, hitbox.height);
+            }
+        }
+    }
 }
