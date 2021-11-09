@@ -11,7 +11,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 public class GameLauncher implements Screen {
 
     /* @AUTHOR - Ghozti
-     * This is the GameLauncer class, This is where we will wrap everything up (atleast for the main screen), this means that this is where we will create
+     * This is the GameLauncher class, This is where we will wrap everything up (at least for the main screen), this means that this is where we will create
      * our player object, map, etc and call in their update and render method.
      * If you notice we have a class called Game. We will not be touching that a lot so no need to worry on that.
      *
@@ -29,7 +29,7 @@ public class GameLauncher implements Screen {
 
     public GameLauncher(){
         camera = new OrthographicCamera();
-        viewport = new StretchViewport(1920,1080,camera);
+        viewport = new StretchViewport(1920,1080,camera);//tells the cam how much to see from the screen in pixels (width x height in px (pixels))
         batch = new SpriteBatch();
     }
 
@@ -40,7 +40,7 @@ public class GameLauncher implements Screen {
     }
 
     /*
-    - this is the update method, where we will be updated our sprites and map. This method will be called in the render method since it's called repetitively.
+    - this is the update method, where we will be updating our sprites and map. This method will be called in the render method since it's called repetitively.
     - we created this method in order to make the render method more read-able
      */
     public void update(){
@@ -63,7 +63,7 @@ public class GameLauncher implements Screen {
         batch.end();
     }
 
-    // don't worry about this method it will just be used for when the screen resizes so that the rendering don't get messed up
+    // don't worry about this method it will just be used for when the screen resizes so that the rendering doesn't get messed up
     @Override
     public void resize(int width, int height) {
         viewport.update(width,height,true);//tells the viewport to update accordingly
