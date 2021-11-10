@@ -4,6 +4,10 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 
 public class Player extends GameSprite{
 
+    public Player(){
+
+    }
+
     @Override
     public void draw(Batch batch) {
         
