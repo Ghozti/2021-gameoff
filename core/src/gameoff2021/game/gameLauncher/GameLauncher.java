@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import gameoff2021.game.entities.Player;
 
 public class GameLauncher implements Screen {
 
@@ -27,10 +28,14 @@ public class GameLauncher implements Screen {
 
     //this is the constructor, where we will initialize our fields. (camera, viewport, batch, etc)
 
+    //game objects (player, map etc)
+    Player player;
+
     public GameLauncher(){
         camera = new OrthographicCamera();
         viewport = new StretchViewport(1920,1080,camera);//tells the cam how much to see from the screen in pixels (width x height in px (pixels))
         batch = new SpriteBatch();
+        player = new Player();
     }
 
     //this method will be called once (we won't really touch this a lot)
@@ -44,7 +49,8 @@ public class GameLauncher implements Screen {
     - we created this method in order to make the render method more read-able
      */
     public void update(){
-
+        //call the sprite update methods here
+        player.update();
     }
 
     /*
@@ -60,6 +66,7 @@ public class GameLauncher implements Screen {
         ScreenUtils.clear(0, 0, 0, 1);// will reset the screen to black
         batch.begin();
         //render stuff here
+        player.draw(batch);
         batch.end();
     }
 
