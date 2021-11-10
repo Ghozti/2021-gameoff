@@ -25,6 +25,7 @@ public abstract class GameSprite {
     float hitBoxOffSetX = 0, hitBoxOffSetY = 0;//we will also draw a rectangle to represent the hitbox of the sprite, sometimes due to scaling we need to move the x and y values, this is where offset comes in
     TextureRegion texture;//the actual texture of the sprite. Texture region is a specific area of a texture atlas (a huge image of a bunch of sprites)
     //we use texture atlases to reduce files, and to optimize the game performance.
+    boolean debugMode = true;
 
     //constants
     public TextureAtlas atlas;// texture atlas instantiation and file path TODO fill this
@@ -91,6 +92,10 @@ public abstract class GameSprite {
         hitbox.y = position[1];
     }
 
+    public void setDebug(boolean debug){
+        this.debugMode = debug;
+    }
+
     //getters
 
     public Sprite getSprite(){
@@ -149,7 +154,7 @@ public abstract class GameSprite {
 
     //will draw the hitbox if the game is in debug mode
     public void drawHitBox(Batch batch, boolean scaleDown){
-        if (true) {//TODO set debug mode
+        if (debugMode) {//TODO set debug mode
             if (scaleDown) {
                 batch.draw(debugTexture, (hitbox.x + hitBoxOffSetX) - width / scale, (hitbox.y + hitBoxOffSetY) - height / scale, hitbox.width, hitbox.height);
             }else {
