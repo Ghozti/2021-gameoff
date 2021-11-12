@@ -1,4 +1,4 @@
-package gameoff2021.game.entities;
+package gameoff2021.game.entities.builder;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Batch;
@@ -28,8 +28,8 @@ public abstract class GameSprite {
     boolean debugMode = true;
 
     //constants
-    TextureAtlas atlas = new TextureAtlas(Gdx.files.internal("textures/sprites.atlas"));// texture atlas instantiation and file path
-    TextureRegion debugTexture = atlas.findRegion("hitboxDebug");// hitbox texture region
+    public TextureAtlas atlas = new TextureAtlas(Gdx.files.internal("textures/sprites.atlas"));// texture atlas instantiation and file path
+    public TextureRegion debugTexture = atlas.findRegion("hitboxDebug");// hitbox texture region
 
     /*
      *REQUIRED TO FILL IN v, OTHERWISE IT WILL CREATE A NULL EXCEPTION AND WILL CRASH THE PROGRAM
