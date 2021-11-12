@@ -33,7 +33,6 @@ public class Player extends GameSprite {
 
     @Override
     public void update() {
-        System.out.println(getPositionArr()[0] + "***" + getPositionArr()[1]);
         // Called the updatePosition method to call the InputProcessor method to update the position.
         updatePosition(PlayerInput.inputProcessor()[0],PlayerInput.inputProcessor()[1]);
     }
