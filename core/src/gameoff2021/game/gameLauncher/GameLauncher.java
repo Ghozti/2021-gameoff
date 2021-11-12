@@ -50,7 +50,10 @@ public class GameLauncher implements Screen {
      */
     public void update(){
         //call the sprite update methods here
+        camera.update();
+        batch.setProjectionMatrix(camera.combined);
         player.update();
+
     }
 
     /*
