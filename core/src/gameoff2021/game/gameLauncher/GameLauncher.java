@@ -33,9 +33,13 @@ public class GameLauncher implements Screen {
     Player player;
     Map map;
 
+    boolean developMode = true;
+
     public GameLauncher(){
         camera = new OrthographicCamera();
-        viewport = new StretchViewport(1920,1080,camera);//tells the cam how much to see from the screen in pixels (width x height in px (pixels))
+        if (developMode) {
+            viewport = new StretchViewport(1920, 1080, camera);//tells the cam how much to see from the screen in pixels (width x height in px (pixels))
+        }
         batch = new SpriteBatch();
         player = new Player();
         map = new Map();
@@ -54,7 +58,7 @@ public class GameLauncher implements Screen {
     public void update(){
         //call the sprite update methods here
         //camera stuff don't touch
-        camera.position.add(player.getDirectionalChange()[0],player.getDirectionalChange()[1],0);
+        camera.position.add(player.getDirectionalChange()[0],player.getDirectionalChange()[1],0);//will change the camera x and y with the player's x and y
         camera.update();
         batch.setProjectionMatrix(camera.combined);
 
