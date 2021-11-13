@@ -2,6 +2,7 @@ package gameoff2021.game.ui;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import gameoff2021.game.utilities.Constants;
 
 /*
  * Author: wholesomebrit
@@ -14,16 +15,16 @@ public class PlayerInput {
     public static float[] inputProcessor(){
         float xchange = 0, ychange = 0;
         if (Gdx.input.isKeyPressed(Input.Keys.W)){
-            ychange = 15;
+            ychange = Constants.Player.MAX_SPEEDY;
         }
         if (Gdx.input.isKeyPressed(Input.Keys.S)){
-            ychange = -15;
+            ychange = -Constants.Player.MAX_SPEEDY;
         }
         if (Gdx.input.isKeyPressed(Input.Keys.D)){
-            xchange = 15;
+            xchange = Constants.Player.MAX_SPEEDX;
         }
         if (Gdx.input.isKeyPressed(Input.Keys.A)){
-            xchange = -15;
+            xchange = -Constants.Player.MAX_SPEEDX;
         }
         return new float[]{xchange, ychange};
     }

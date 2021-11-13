@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Rectangle;
 import gameoff2021.game.entities.builder.GameSprite;
 import gameoff2021.game.ui.PlayerInput;
+import gameoff2021.game.utilities.Constants;
 
 public class Player extends GameSprite {
 
@@ -13,12 +14,12 @@ public class Player extends GameSprite {
         createSprite(new Sprite(atlas.findRegion("badlogic")));
         setTexture(atlas.findRegion("badlogic"));
         createHitbox(new Rectangle());
-        setPosition(825,390);
-        setUnScaledWidth(256);
-        setUnscaledHeight(256);
-        setScale(.5f);
+        setPosition(Constants.Player.INIT_X,Constants.Player.INIT_Y);
+        setUnScaledWidth(Constants.Player.UNSCALED_WIDTH);
+        setUnscaledHeight(Constants.Player.UNSCALED_HEIGHT);
+        setScale(Constants.Player.SCALE);
         //setHitboxDimensions();
-        setHitboxOffSet(64,64);
+        setHitboxOffSet(Constants.Player.HITBOXOFFSET_X,Constants.Player.HITBOXOFFSET_Y);
     }
 
     public float[] getDirectionalChange(){
