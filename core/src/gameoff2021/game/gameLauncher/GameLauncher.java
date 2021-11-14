@@ -4,6 +4,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
@@ -58,7 +59,7 @@ public class GameLauncher implements Screen {
     public void update(){
         //call the sprite update methods here
         //camera stuff don't touch
-        camera.position.add(player.getDirectionalChange()[0],player.getDirectionalChange()[1],0);//will change the camera x and y with the player's x and y
+        camera.position.set(player.getCenter()[0], player.getCenter()[1],0);//will change the camera x and y with the player's x and y
         camera.update();
         batch.setProjectionMatrix(camera.combined);
 
