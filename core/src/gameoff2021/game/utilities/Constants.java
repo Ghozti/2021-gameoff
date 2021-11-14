@@ -12,7 +12,7 @@ public class Constants {
         public static final float MAX_SPEEDX = 13, MAX_SPEEDY = 13;
         public static final float UNSCALED_WIDTH = 256, UNSCALED_HEIGHT = 256;
         public static final float INIT_X = 825, INIT_Y= 390;
-        public static final float SCALE = .5f;
+        public static final float SCALE = .1f;
         public static final float HITBOXOFFSET_X = 64, HITBOXOFFSET_Y = 64;
     }
 

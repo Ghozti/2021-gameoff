@@ -32,7 +32,6 @@ public class GameLauncher implements Screen {
 
     //game objects (player, map etc)
     Player player;
-    Map map;
 
     boolean developMode = true;
 
@@ -43,7 +42,6 @@ public class GameLauncher implements Screen {
         }
         batch = new SpriteBatch();
         player = new Player();
-        map = new Map();
     }
 
     //this method will be called once (we won't really touch this a lot)
@@ -79,7 +77,7 @@ public class GameLauncher implements Screen {
         update();
         ScreenUtils.clear(0, 0, 0, 1);// will reset the screen to black
         batch.begin();
-        map.draw(batch);
+        Map.draw(batch);
         //render stuff here
         player.draw(batch);
         batch.end();

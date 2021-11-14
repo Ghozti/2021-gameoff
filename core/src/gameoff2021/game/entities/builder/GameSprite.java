@@ -81,6 +81,11 @@ public abstract class GameSprite {
         hitbox.height = height;
     }
 
+    //changes the origin of the player
+    public void setOrigin(float x, float y){
+        sprite.setOrigin(x,y);
+    }
+
     //sometimes the hitbox will be bigger than we want it to be, so we can force it to be a certain width/height here
     public void setHitboxDimensions(float width, float height) {
         hitbox.width = width;
