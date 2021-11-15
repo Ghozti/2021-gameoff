@@ -23,10 +23,7 @@ public class Player extends GameSprite {
 
     //for the camera to center on the player
     public float[] getCenter(){
-        if (getScale() >= 1){
-            return new float[] {getPositionArr()[0] + getWidth() * getScale()/(getScale() * 2) , getPositionArr()[1] + getHeight() * getScale()/(getScale() * 2)};
-        }
-        return new float[] {getPositionArr()[0] + getWidth() * getScale() , getPositionArr()[1] + getHeight() * getScale()};
+        return new float[] {getPositionArr()[0] + getWidth() / 2 , getPositionArr()[1] + getHeight() / 2};
     }
 
     //makes sure to keep the player inside the map

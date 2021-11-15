@@ -4,7 +4,6 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
@@ -33,12 +32,14 @@ public class GameLauncher implements Screen {
     //game objects (player, map etc)
     Player player;
 
-    boolean developMode = true;
+    boolean developMode = false;//for when we are developing we can set the viewport to see the entire screen
 
     public GameLauncher(){
         camera = new OrthographicCamera();
         if (developMode) {
             viewport = new StretchViewport(1920, 1080, camera);//tells the cam how much to see from the screen in pixels (width x height in px (pixels))
+        }else{
+            viewport = new StretchViewport(256,128,camera);
         }
         batch = new SpriteBatch();
         player = new Player();
