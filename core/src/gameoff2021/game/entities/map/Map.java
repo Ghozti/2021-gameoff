@@ -14,4 +14,9 @@ public class Map {
     public static void draw(Batch batch){
         batch.draw(texture,x,y,width,height);
     }
+
+
+    //TESTING BELOW
+
+
 }
