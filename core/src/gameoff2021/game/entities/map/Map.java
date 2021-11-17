@@ -6,6 +6,9 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Rectangle;
 import gameoff2021.game.utilities.Constants;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 public class Map {
 
     static Texture texture = new Texture(Gdx.files.internal("map.png"));
@@ -32,37 +35,33 @@ public class Map {
      * remember that array indexes start at 0, therefore to call row 2 and column 4 you type arr[1][3]
      */
 
+    ArrayList<Tile> interactiveTiles;
+
+    /*
+     * current issue:
+     * while this works, as we create more tiles, we will have m,ore objects and a less memory and cpu efficient way or rendering and creating tiles,
+     * this is bad because it physically slows down the game and leads to potential crashes.
+     *
+     * solutions: (maybe)
+     * create a tileSet class that will be able to be the "representative" for a series of tiles (specifically tiles that are next to esach other and in a straight line)
+     * while this still uses the tile class method of doing stuff, it significantly decreases the objects created and textures rendered.
+     */
+
     public Map(){
-
-        mapTiles = new Tile[4][4];
-        int currentX = 0, currentY = 1080;
-
-        for(int i = 0; i < mapTiles.length; i++){
-            for (int j = 0; j < mapTiles[i].length; j++){
-                mapTiles[i][j] = new Tile(currentX,currentY);
-                currentX += 30;
-            }
-            currentY -= 30;
-            currentX = 0;
-        }
-
-        /*
-        mapTiles = new Tile[36][64];//basically creates 36 arrays with a length of 64 in each
-
-        int currentX = 0, currentY = 1080;
-
-        for(int i = 0; i < mapTiles.length; i++){
-            for (int j = 0; j < mapTiles[i].length; j++){
-                currentX += 30;
-                mapTiles[i][j] = new Tile(currentX,currentY);
-            }
-            currentY -= 30;
-            currentX = 0;
-        }
-         */
+        interactiveTiles = new ArrayList();
+        addInteractiveTile(0,1080);
     }
 
-    public Tile getTile(int x, int y){
-        return mapTiles[x-1][y-1];
+    public void addInteractiveTile(float x, float y){
+        interactiveTiles.add(new Tile(x,y));
+    }
+
+    public Tile getInteractiveTile(float x, float y){
+        for(Tile tile : interactiveTiles){
+            if (tile.position[0] == x && tile.position[1] == y){
+                return tile;
+            }
+        }
+        return null;
     }
 }

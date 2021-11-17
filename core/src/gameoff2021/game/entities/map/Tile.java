@@ -10,7 +10,6 @@ public class Tile {
 
     Rectangle hitBox;
     float[] position;
-    boolean interactive;
     float width = 30,height = 30;//TODO create constant values for width/height
 
     TextureAtlas atlas = new TextureAtlas(Gdx.files.internal("textures/sprites.atlas"));// texture atlas instantiation and file path
@@ -19,7 +18,6 @@ public class Tile {
     public Tile(float x, float y){
         position = new float[]{x,y};
         hitBox = new Rectangle(width,height,position[0],position[1]);
-        interactive = false;
     }
 
     public void drawBox(Batch batch){

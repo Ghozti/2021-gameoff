@@ -81,10 +81,8 @@ public class GameLauncher implements Screen {
         ScreenUtils.clear(0, 0, 0, 1);// will reset the screen to black
         batch.begin();
         Map.draw(batch);
-        map.getTile(1,1).drawBox(batch);
-        map.getTile(1,2).drawBox(batch);
-        map.getTile(2,1).drawBox(batch);
         //render stuff here
+        map.getInteractiveTile(0,1080).drawBox(batch);
         player.draw(batch);
         batch.end();
     }
