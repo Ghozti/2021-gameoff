@@ -31,6 +31,7 @@ public class GameLauncher implements Screen {
 
     //game objects (player, map etc)
     Player player;
+    Map map;
 
     boolean developMode = false;//for when we are developing we can set the viewport to see the entire screen
 
@@ -42,6 +43,7 @@ public class GameLauncher implements Screen {
             viewport = new StretchViewport(256,128,camera);
         }
         batch = new SpriteBatch();
+        map = new Map();
         player = new Player();
     }
 
@@ -79,6 +81,9 @@ public class GameLauncher implements Screen {
         ScreenUtils.clear(0, 0, 0, 1);// will reset the screen to black
         batch.begin();
         Map.draw(batch);
+        map.getTile(1,1).drawBox(batch);
+        map.getTile(1,2).drawBox(batch);
+        map.getTile(2,1).drawBox(batch);
         //render stuff here
         player.draw(batch);
         batch.end();
