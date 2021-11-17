@@ -82,7 +82,7 @@ public class GameLauncher implements Screen {
         batch.begin();
         Map.draw(batch);
         //render stuff here
-        map.getInteractiveTile(0,1080).drawBox(batch);
+        map.drawTilesAndSets(batch);
         player.draw(batch);
         batch.end();
     }

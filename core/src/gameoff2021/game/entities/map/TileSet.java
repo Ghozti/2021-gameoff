@@ -36,7 +36,7 @@ public class TileSet {
     }
 
     public void draw(Batch batch){
-        batch.draw(debugTexture, position[0],position[1],width,height);
+        batch.draw(debugTexture, position[0],position[1]-height,width,height);
     }
 
 }

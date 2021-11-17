@@ -21,21 +21,10 @@ public class Map {
 
     //TESTING BELOW
 
-    Tile[][] mapTiles;//a 2d array list with a width of 64 and a height of 36, 2d arrays are essentially a big array containing arrays
-
-    /*
-     * think of 2d arrays as a colum-row chart
-     * in the first [] you specify the number of rows, and in the second [] you specify the number of columns
-     * ex: float [][] arr = new float[numOfRows][numOfColumns];
-     *
-     * ex: if you have a 2d array of [2][4] you will have an array that looks like this:
-     * [0,0,0,0]
-     * [0,0,0,0]
-     *
-     * remember that array indexes start at 0, therefore to call row 2 and column 4 you type arr[1][3]
-     */
+    //the map has 64 tiles on the x axis and 36 tiles on the y
 
     ArrayList<Tile> interactiveTiles;
+    ArrayList<TileSet> interactiveTileSets;
 
     /*
      * current issue:
@@ -48,20 +37,27 @@ public class Map {
      */
 
     public Map(){
-        interactiveTiles = new ArrayList();
-        addInteractiveTile(0,1080);
+        interactiveTiles = new ArrayList<>();
+        interactiveTileSets = new ArrayList<>();
+
+        //MAP BORDERS
+        addInteractiveTileSets(1920f,30f,0f,36f);//top border
+        addInteractiveTileSets(30f,1080,0f,35);
     }
 
     public void addInteractiveTile(float x, float y){
-        interactiveTiles.add(new Tile(x,y));
+        interactiveTiles.add(new Tile(x*30,y*30));
     }
 
-    public Tile getInteractiveTile(float x, float y){
-        for(Tile tile : interactiveTiles){
-            if (tile.position[0] == x && tile.position[1] == y){
-                return tile;
-            }
+    public void addInteractiveTileSets(float width, float height, float x, float y){interactiveTileSets.add(new TileSet(width,height,x*30,y*30));}
+
+    public void drawTilesAndSets(Batch batch){
+        for ( Tile tile : interactiveTiles) {
+            tile.drawBox(batch);
         }
-        return null;
+
+        for(TileSet tileSet : interactiveTileSets){
+            tileSet.draw(batch);
+        }
     }
 }
