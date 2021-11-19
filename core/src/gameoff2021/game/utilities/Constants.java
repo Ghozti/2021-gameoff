@@ -20,4 +20,9 @@ public class Constants {
         public static final float MAP_WIDTH = 1920, MAP_HEIGHT = 1080;
         public static final float X = 0, Y = 0;
     }
+
+
+    public static class Tile{
+        public static final float TILE_WIDTH = 30, TILE_HEIGHT = 30;
+    }
 }

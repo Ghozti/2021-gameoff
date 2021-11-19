@@ -21,7 +21,7 @@ public class Map {
 
     /*
      * current issue:
-     * while this works, as we create more tiles, we will have m,ore objects and a less memory and cpu efficient way or rendering and creating tiles,
+     * while this works, as we create more tiles, we will have more objects and a less memory and cpu efficient way or rendering and creating tiles,
      * this is bad because it physically slows down the game and leads to potential crashes.
      *
      * solutions: (maybe)

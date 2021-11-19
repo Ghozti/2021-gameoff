@@ -5,12 +5,13 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
+import gameoff2021.game.utilities.Constants;
 
 public class Tile {
 
     Rectangle hitBox;
     float[] position;
-    float width = 30,height = 30;//TODO create constant values for width/height
+    float width = Constants.Tile.TILE_WIDTH, height = Constants.Tile.TILE_HEIGHT;
 
     TextureAtlas atlas = new TextureAtlas(Gdx.files.internal("textures/sprites.atlas"));// texture atlas instantiation and file path
     TextureRegion debugTexture = atlas.findRegion("hitboxDebug");// hitbox texture region
@@ -33,3 +34,4 @@ public class Tile {
         return hitBox;
     }
 }
+
