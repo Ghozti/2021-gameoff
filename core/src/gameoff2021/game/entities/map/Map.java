@@ -3,9 +3,10 @@ package gameoff2021.game.entities.map;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Rectangle;
 import gameoff2021.game.utilities.Constants;
-
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
@@ -25,6 +26,8 @@ public class Map {
 
     ArrayList<Tile> interactiveTiles;
     ArrayList<TileSet> interactiveTileSets;
+    OrthogonalTiledMapRenderer renderer;
+    TiledMap map;
 
     /*
      * current issue:
@@ -42,14 +45,16 @@ public class Map {
 
         //MAP BORDERS
         addInteractiveTileSets(1920f,30f,0f,36f);//top border
-        addInteractiveTileSets(30f,1080,0f,35);
+        addInteractiveTileSets(30f,1080,0f,36);
+        addInteractiveTileSets(30f,1080,63,36);
+        addInteractiveTileSets(1920,30,0,1);
     }
 
-    public void addInteractiveTile(float x, float y){
+    private void addInteractiveTile(float x, float y){
         interactiveTiles.add(new Tile(x*30,y*30));
     }
 
-    public void addInteractiveTileSets(float width, float height, float x, float y){interactiveTileSets.add(new TileSet(width,height,x*30,y*30));}
+    private void addInteractiveTileSets(float width, float height, float x, float y){interactiveTileSets.add(new TileSet(width,height,x*30,y*30));}
 
     public void drawTilesAndSets(Batch batch){
         for ( Tile tile : interactiveTiles) {
@@ -59,5 +64,13 @@ public class Map {
         for(TileSet tileSet : interactiveTileSets){
             tileSet.draw(batch);
         }
+    }
+
+    public ArrayList<TileSet> getTileSets(){
+        return interactiveTileSets;
+    }
+
+    public ArrayList<Tile> getTiles(){
+        return interactiveTiles;
     }
 }

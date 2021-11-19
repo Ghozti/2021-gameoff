@@ -1,14 +1,21 @@
 package gameoff2021.game.gameLauncher;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.assets.loaders.FileHandleResolver;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TmxMapLoader;
+import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import gameoff2021.game.entities.entities.Player;
 import gameoff2021.game.entities.map.Map;
+import gameoff2021.game.entities.map.Tile;
+import gameoff2021.game.entities.map.TileSet;
 
 public class GameLauncher implements Screen {
 
@@ -23,11 +30,17 @@ public class GameLauncher implements Screen {
      */
 
     //screen
-    Camera camera;
+    OrthographicCamera camera;
     Viewport viewport;
     SpriteBatch batch;
 
     //this is the constructor, where we will initialize our fields. (camera, viewport, batch, etc)
+
+    //map stuff
+    OrthogonalTiledMapRenderer renderer;
+    TiledMap t_map;
+    TmxMapLoader loader = new TmxMapLoader();
+
 
     //game objects (player, map etc)
     Player player;
@@ -38,13 +51,17 @@ public class GameLauncher implements Screen {
     public GameLauncher(){
         camera = new OrthographicCamera();
         if (developMode) {
-            viewport = new StretchViewport(1920, 1080, camera);//tells the cam how much to see from the screen in pixels (width x height in px (pixels))
+            //viewport = new StretchViewport(1920, 1080, camera);//tells the cam how much to see from the screen in pixels (width x height in px (pixels))
         }else{
-            viewport = new StretchViewport(256,128,camera);
+            //viewport = new StretchViewport(256,128,camera);
         }
         batch = new SpriteBatch();
         map = new Map();
         player = new Player();
+
+        t_map = loader.load("untitled.tmx");
+        renderer = new OrthogonalTiledMapRenderer(t_map);
+        renderer.setMap(t_map);
     }
 
     //this method will be called once (we won't really touch this a lot)
@@ -64,6 +81,8 @@ public class GameLauncher implements Screen {
         camera.update();
         batch.setProjectionMatrix(camera.combined);
 
+
+
         player.update();
 
     }
@@ -80,7 +99,9 @@ public class GameLauncher implements Screen {
         update();
         ScreenUtils.clear(0, 0, 0, 1);// will reset the screen to black
         batch.begin();
-        Map.draw(batch);
+        renderer.setView(camera);
+        renderer.render();
+        //Map.draw(batch);
         //render stuff here
         map.drawTilesAndSets(batch);
         player.draw(batch);
@@ -90,7 +111,7 @@ public class GameLauncher implements Screen {
     // don't worry about this method it will just be used for when the screen resizes so that the rendering doesn't get messed up
     @Override
     public void resize(int width, int height) {
-        viewport.update(width,height,true);//tells the viewport to update accordingly
+        //viewport.update(width,height,true);//tells the viewport to update accordingly
         batch.setProjectionMatrix(camera.combined);
     }
 
@@ -113,5 +134,6 @@ public class GameLauncher implements Screen {
     @Override
     public void dispose() {
         batch.dispose();
+        renderer.dispose();
     }
 }

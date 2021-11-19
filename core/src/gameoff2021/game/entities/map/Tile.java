@@ -22,10 +22,14 @@ public class Tile {
 
     public void drawBox(Batch batch){
         //System.out.println(position[0] + "***" + position[1] + "***" + width + "***" + height);
-        batch.draw(debugTexture,position[0],position[1]-height,width,height);
+        batch.draw(debugTexture,hitBox.x,hitBox.y-height,hitBox.width,hitBox.height);
     }
 
     public boolean isTouched(Rectangle rectangle){
         return hitBox.overlaps(rectangle);
+    }
+
+    public Rectangle getHitbox(){
+        return hitBox;
     }
 }

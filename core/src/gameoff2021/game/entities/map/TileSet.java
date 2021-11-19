@@ -36,7 +36,10 @@ public class TileSet {
     }
 
     public void draw(Batch batch){
-        batch.draw(debugTexture, position[0],position[1]-height,width,height);
+        batch.draw(debugTexture, hitbox.x,hitbox.y - height,hitbox.width,hitbox.height);
     }
 
+    public Rectangle getHitbox(){
+        return hitbox;
+    }
 }
