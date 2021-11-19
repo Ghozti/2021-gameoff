@@ -12,16 +12,6 @@ import java.util.ArrayList;
 
 public class Map {
 
-    static Texture texture = new Texture(Gdx.files.internal("map.png"));
-    static final float width = Constants.Map.MAP_WIDTH, height = Constants.Map.MAP_HEIGHT,x = Constants.Map.X,y = Constants.Map.Y;
-
-    public static void draw(Batch batch){
-        batch.draw(texture,x,y,width,height);
-    }
-
-
-    //TESTING BELOW
-
     //the map has 64 tiles on the x axis and 36 tiles on the y
 
     ArrayList<Tile> interactiveTiles;
@@ -44,10 +34,18 @@ public class Map {
         interactiveTileSets = new ArrayList<>();
 
         //MAP BORDERS
-        addInteractiveTileSets(1920f,30f,0f,36f);//top border
-        addInteractiveTileSets(30f,1080,0f,36);
-        addInteractiveTileSets(30f,1080,63,36);
-        addInteractiveTileSets(1920,30,0,1);
+
+        //top left square
+        addInteractiveTileSets(300,30,1,27);
+        addInteractiveTileSets(30,60,10,29);
+        addInteractiveTileSets(30,150,10,35);
+
+        //bottom left square
+        addInteractiveTileSets(300,30,1,10);
+        addInteractiveTileSets(30,60,10,9);
+        addInteractiveTileSets(30,150,10,6);
+
+        //top right square
     }
 
     private void addInteractiveTile(float x, float y){

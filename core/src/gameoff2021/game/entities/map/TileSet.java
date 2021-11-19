@@ -28,7 +28,7 @@ public class TileSet {
         hitbox.width = width;
         hitbox.height = height;
         hitbox.x = position[0];
-        hitbox.y = position[1];
+        hitbox.y = position[1] - height;
     }
 
     public boolean isTouched(Rectangle hitbox){
@@ -36,7 +36,7 @@ public class TileSet {
     }
 
     public void draw(Batch batch){
-        batch.draw(debugTexture, hitbox.x,hitbox.y - height,hitbox.width,hitbox.height);
+        batch.draw(debugTexture, hitbox.x,hitbox.y,hitbox.width,hitbox.height);
     }
 
     public Rectangle getHitbox(){

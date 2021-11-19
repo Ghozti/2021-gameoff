@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TiledMapTileSet;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.utils.ScreenUtils;
@@ -37,6 +38,7 @@ public class GameLauncher implements Screen {
     OrthogonalTiledMapRenderer renderer;
     TiledMap map;
     TmxMapLoader loader;
+    Map tiledMapBorders = new Map();
 
 
     //game objects (player, map etc)
@@ -48,14 +50,15 @@ public class GameLauncher implements Screen {
     public GameLauncher(){
         batch = new SpriteBatch();
         player = new Player();
+        tiledMapBorders = new Map();
 
         //map and cam
         loader = new TmxMapLoader();
         map = loader.load("untitled.tmx");
         renderer = new OrthogonalTiledMapRenderer(map);
         camera = new OrthographicCamera();
-        camera.viewportWidth = 1920;//74
-        camera.viewportHeight = 1080;//50
+        camera.viewportWidth = 594;//74
+        camera.viewportHeight = 570;//50
     }
 
     //this method will be called once (we won't really touch this a lot)
@@ -74,6 +77,11 @@ public class GameLauncher implements Screen {
         camera.update();
         batch.setProjectionMatrix(camera.combined);
         player.update();
+        for(TileSet tileSet : tiledMapBorders.getTileSets()){
+            if (tileSet.isTouched(player.getHitbox())){
+                player.setPosition(20,0);
+            }
+        }
     }
 
     /*
@@ -93,6 +101,7 @@ public class GameLauncher implements Screen {
 
         batch.begin();
         //render stuff here
+        tiledMapBorders.drawTilesAndSets(batch);
         player.draw(batch);
         batch.end();
     }
