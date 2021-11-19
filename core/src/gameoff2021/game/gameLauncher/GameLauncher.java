@@ -31,37 +31,31 @@ public class GameLauncher implements Screen {
 
     //screen
     OrthographicCamera camera;
-    Viewport viewport;
     SpriteBatch batch;
-
-    //this is the constructor, where we will initialize our fields. (camera, viewport, batch, etc)
 
     //map stuff
     OrthogonalTiledMapRenderer renderer;
-    TiledMap t_map;
-    TmxMapLoader loader = new TmxMapLoader();
+    TiledMap map;
+    TmxMapLoader loader;
 
 
     //game objects (player, map etc)
     Player player;
-    Map map;
 
     boolean developMode = false;//for when we are developing we can set the viewport to see the entire screen
 
+    //this is the constructor, where we will initialize our fields. (camera, viewport, batch, etc)
     public GameLauncher(){
-        camera = new OrthographicCamera();
-        if (developMode) {
-            //viewport = new StretchViewport(1920, 1080, camera);//tells the cam how much to see from the screen in pixels (width x height in px (pixels))
-        }else{
-            //viewport = new StretchViewport(256,128,camera);
-        }
         batch = new SpriteBatch();
-        map = new Map();
         player = new Player();
 
-        t_map = loader.load("untitled.tmx");
-        renderer = new OrthogonalTiledMapRenderer(t_map);
-        renderer.setMap(t_map);
+        //map and cam
+        loader = new TmxMapLoader();
+        map = loader.load("untitled.tmx");
+        renderer = new OrthogonalTiledMapRenderer(map);
+        camera = new OrthographicCamera();
+        camera.viewportWidth = 1920;//74
+        camera.viewportHeight = 1080;//50
     }
 
     //this method will be called once (we won't really touch this a lot)
@@ -74,17 +68,12 @@ public class GameLauncher implements Screen {
     - this is the update method, where we will be updating our sprites and map. This method will be called in the render method since it's called repetitively.
     - we created this method in order to make the render method more read-able
      */
-    public void update(){
+    public void update() {
         //call the sprite update methods here
-        //camera stuff don't touch
-        camera.position.set(player.getCenter()[0], player.getCenter()[1],0);//will change the camera x and y with the player's x and y
+        camera.position.set(player.getCenter()[0], player.getCenter()[1], 0);//will change the camera x and y with the player's x and y
         camera.update();
         batch.setProjectionMatrix(camera.combined);
-
-
-
         player.update();
-
     }
 
     /*
@@ -97,13 +86,13 @@ public class GameLauncher implements Screen {
     @Override
     public void render(float delta) {
         update();
+
         ScreenUtils.clear(0, 0, 0, 1);// will reset the screen to black
-        batch.begin();
         renderer.setView(camera);
         renderer.render();
-        //Map.draw(batch);
+
+        batch.begin();
         //render stuff here
-        map.drawTilesAndSets(batch);
         player.draw(batch);
         batch.end();
     }
@@ -111,8 +100,6 @@ public class GameLauncher implements Screen {
     // don't worry about this method it will just be used for when the screen resizes so that the rendering doesn't get messed up
     @Override
     public void resize(int width, int height) {
-        //viewport.update(width,height,true);//tells the viewport to update accordingly
-        batch.setProjectionMatrix(camera.combined);
     }
 
     @Override
@@ -135,5 +122,6 @@ public class GameLauncher implements Screen {
     public void dispose() {
         batch.dispose();
         renderer.dispose();
+        map.dispose();
     }
 }
