@@ -36,16 +36,35 @@ public class Map {
         //MAP BORDERS
 
         //top left square
-        addInteractiveTileSets(300,30,1,27);
-        addInteractiveTileSets(30,60,10,29);
+        addInteractiveTileSets(270,30,1,27);
+        addInteractiveTileSets(30,90,10,29);
         addInteractiveTileSets(30,150,10,35);
 
         //bottom left square
-        addInteractiveTileSets(300,30,1,10);
-        addInteractiveTileSets(30,60,10,9);
+        addInteractiveTileSets(270,30,1,10);
+        addInteractiveTileSets(30,90,10,10);
         addInteractiveTileSets(30,150,10,6);
 
         //top right square
+        addInteractiveTileSets(30, 150, 53, 35);
+        addInteractiveTileSets(30, 90, 53, 29);
+        addInteractiveTileSets(270, 30, 54,27);
+        //bottom right square
+        addInteractiveTileSets(30, 150, 53, 6);
+        addInteractiveTileSets(30, 90, 53, 10);
+        addInteractiveTileSets(270, 30, 54, 10);
+
+        //MIDDLE MAP BORDERS: LEFT SIDE
+        addInteractiveTileSets(30, 210, 23, 27);
+        addInteractiveTileSets(240, 30, 24, 27);
+        addInteractiveTileSets(30, 210, 23, 19);
+        addInteractiveTileSets(240, 30, 24, 13);
+
+        //MIDDLE MAP BORDERS: RIGHT SIDE
+        addInteractiveTileSets(240, 30, 33, 27);
+        addInteractiveTileSets(240, 30, 33,13);
+        addInteractiveTileSets(30, 210, 41, 27);
+        addInteractiveTileSets(30, 210, 41, 19);
     }
 
     private void addInteractiveTile(float x, float y){
