@@ -49,6 +49,7 @@ public class Map {
         addInteractiveTileSets(30, 150, 53, 35);
         addInteractiveTileSets(30, 90, 53, 29);
         addInteractiveTileSets(270, 30, 54,27);
+
         //bottom right square
         addInteractiveTileSets(30, 150, 53, 6);
         addInteractiveTileSets(30, 90, 53, 10);
@@ -65,6 +66,22 @@ public class Map {
         addInteractiveTileSets(240, 30, 33,13);
         addInteractiveTileSets(30, 210, 41, 27);
         addInteractiveTileSets(30, 210, 41, 19);
+
+        //TOP LEFT CORNER
+        addInteractiveTileSets(30, 120, 16, 32);
+        addInteractiveTileSets(180, 30, 17, 32);
+
+        //BOTTOM LEFT CORNER
+        addInteractiveTileSets(30, 120, 16, 8);
+        addInteractiveTileSets(180, 30, 17, 5);
+
+        //TOP RIGHT CORNER
+        addInteractiveTileSets(30, 120, 47, 32);
+        addInteractiveTileSets(150, 30, 42, 32);
+
+        //BOTTOM RIGHT CORNER
+        addInteractiveTileSets(30, 120, 47, 8);
+        addInteractiveTileSets(150, 30, 42, 5);
     }
 
     private void addInteractiveTile(float x, float y){
