@@ -82,6 +82,29 @@ public class Map {
         //BOTTOM RIGHT CORNER
         addInteractiveTileSets(30, 120, 47, 8);
         addInteractiveTileSets(150, 30, 42, 5);
+
+        //TOP MIDDLE T SHAPE
+        addInteractiveTileSets(210, 30, 29, 32);
+        addInteractiveTileSets(30, 90, 32, 35);
+
+        //BOTTOM MIDDLE T SHAPE
+        addInteractiveTileSets(210, 30, 29, 5);
+        addInteractiveTileSets(30, 90, 32, 4);
+
+        //BOTTOM LEFT LINE
+        addInteractiveTileSets(270, 30, 11, 3);
+
+        //SMALL MIDDLE LEFT LINE
+        addInteractiveTileSets(60, 30, 1, 21);
+
+        //MIDDLE LEFT LINES
+        addInteractiveTileSets(300, 60, 1, 19);
+        addInteractiveTileSets(30, 300, 11, 23);
+
+        //MIDDLE RIGHT LINES
+        addInteractiveTileSets(300, 60, 53, 19);
+        addInteractiveTileSets(30, 300, 52, 23);
+
     }
 
     private void addInteractiveTile(float x, float y){
