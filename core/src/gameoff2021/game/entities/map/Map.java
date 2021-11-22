@@ -105,6 +105,13 @@ public class Map {
         addInteractiveTileSets(300, 60, 53, 19);
         addInteractiveTileSets(30, 300, 52, 23);
 
+        //middle right hallway
+        addInteractiveTileSets(270, 30, 54, 22);
+        addInteractiveTileSets(30,30,54,21);
+        addInteractiveTileSets(30,30,56,21);
+        addInteractiveTileSets(30,30,58,21);
+        addInteractiveTileSets(30,30,60,21);
+        addInteractiveTileSets(30,30,62,21);
     }
 
     private void addInteractiveTile(float x, float y){
