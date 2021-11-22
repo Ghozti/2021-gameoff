@@ -57,8 +57,8 @@ public class GameLauncher implements Screen {
         map = loader.load("untitled.tmx");
         renderer = new OrthogonalTiledMapRenderer(map);
         camera = new OrthographicCamera();
-        camera.viewportWidth = 594;//74
-        camera.viewportHeight = 570;//50
+        camera.viewportWidth = 144;
+        camera.viewportHeight = 120;
     }
 
     //this method will be called once (we won't really touch this a lot)
@@ -78,8 +78,10 @@ public class GameLauncher implements Screen {
         batch.setProjectionMatrix(camera.combined);
         player.update();
         for(TileSet tileSet : tiledMapBorders.getTileSets()){
-            if (tileSet.isTouched(player.getHitbox())){
-                player.setPosition(20,0);
+            if (tileSet.isTouched(player.getHitbox())) {
+                player.isTouched = true;
+            }else {
+                player.isTouched = false;
             }
         }
     }

@@ -1,5 +1,6 @@
 package gameoff2021.game.entities.entities;
 
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Rectangle;
@@ -42,6 +43,35 @@ public class Player extends GameSprite {
         }
     }
 
+    public void handlePositioning(){
+        //TODO do this
+        float[] posChange = PlayerInput.inputProcessor();
+        if (isTouched){
+
+            float posChangeX = 0, posChangeY = 0;
+
+            if (posChange[0] != 0) {
+                if (posChange[0] > 0) {
+                    posChangeX = -1;
+                } else if (posChange[0] < 0) {
+                    posChangeX = 1;
+                }
+            }else {
+                posChangeX = 0;
+            }
+
+            if (posChange[1] != 0) {
+                if (posChange[1] > 0) {
+                    posChangeY = -1;
+                } else if (posChange[1] < 0) {
+                    posChangeY = 1;
+                }
+            }
+            updatePosition(posChangeX,posChangeY);
+        }
+        updatePosition(posChange[0], posChange[1]);
+    }
+
     @Override
     public void draw(Batch batch) {
         drawSprite(batch);
@@ -51,11 +81,7 @@ public class Player extends GameSprite {
     @Override
     public void update() {
         // Called the updatePosition method to call the InputProcessor method to update the position.
-        if (isTouched){
-            updatePosition(0,0);
-        }else {
-            updatePosition(PlayerInput.inputProcessor()[0], PlayerInput.inputProcessor()[1]);
-        }
+        handlePositioning();
         keepInBorders();
     }
 }
