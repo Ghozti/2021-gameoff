@@ -14,6 +14,7 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import gameoff2021.game.entities.entities.Player;
+import gameoff2021.game.entities.entities.Virus;
 import gameoff2021.game.entities.map.Map;
 import gameoff2021.game.entities.map.Tile;
 import gameoff2021.game.entities.map.TileSet;
@@ -43,6 +44,7 @@ public class GameLauncher implements Screen {
 
     //game objects (player, map etc)
     Player player;
+    Virus virus;
 
     boolean developMode = false;//for when we are developing we can set the viewport to see the entire screen
 
@@ -50,6 +52,7 @@ public class GameLauncher implements Screen {
     public GameLauncher(){
         batch = new SpriteBatch();
         player = new Player();
+        virus = new Virus();
         tiledMapBorders = new Map();
 
         //map and cam
@@ -57,8 +60,8 @@ public class GameLauncher implements Screen {
         map = loader.load("untitled.tmx");
         renderer = new OrthogonalTiledMapRenderer(map);
         camera = new OrthographicCamera();
-        camera.viewportWidth = 144;
-        camera.viewportHeight = 120;
+        camera.viewportWidth = 1920;//144
+        camera.viewportHeight = 1080;//120
     }
 
     //this method will be called once (we won't really touch this a lot)
@@ -79,11 +82,12 @@ public class GameLauncher implements Screen {
         player.update();
         for(TileSet tileSet : tiledMapBorders.getTileSets()){
             if (tileSet.isTouched(player.getHitbox())) {
-                player.isTouched = true;
+                //player.isTouched = true;
             }else {
-                player.isTouched = false;
+                //player.isTouched = false;
             }
         }
+        virus.update();
     }
 
     /*
@@ -105,6 +109,7 @@ public class GameLauncher implements Screen {
         //render stuff here
         tiledMapBorders.drawTilesAndSets(batch);
         player.draw(batch);
+        virus.draw(batch);
         batch.end();
     }
 
