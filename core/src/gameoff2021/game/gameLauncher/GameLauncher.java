@@ -39,20 +39,21 @@ public class GameLauncher implements Screen {
     OrthogonalTiledMapRenderer renderer;
     TiledMap map;
     TmxMapLoader loader;
-    Map tiledMapBorders = new Map();
+    Map tiledMapBorders;
 
 
     //game objects (player, map etc)
     Player player;
-    Virus virus;
+    Virus virus, virus1 ;
 
-    boolean developMode = false;//for when we are developing we can set the viewport to see the entire screen
+    boolean developMode = true;//for when we are developing we can set the viewport to see the entire screen
 
     //this is the constructor, where we will initialize our fields. (camera, viewport, batch, etc)
     public GameLauncher(){
         batch = new SpriteBatch();
         player = new Player();
-        virus = new Virus();
+        virus = new Virus(53 * 30,19 * 30, 1860, 1590,1.5f, player);//these are the arguments for the virus near the top right corner
+        virus1 = new Virus(11 * 30, 30, 31 * 30, 11 * 30,.80f, player);
         tiledMapBorders = new Map();
 
         //map and cam
@@ -60,8 +61,14 @@ public class GameLauncher implements Screen {
         map = loader.load("untitled.tmx");
         renderer = new OrthogonalTiledMapRenderer(map);
         camera = new OrthographicCamera();
-        camera.viewportWidth = 1920;//144
-        camera.viewportHeight = 1080;//120
+
+        if (developMode) {
+            camera.viewportWidth = 1920;//144
+            camera.viewportHeight = 1080;//120
+        }else {
+            camera.viewportWidth = 144;//144
+            camera.viewportHeight = 120;//120
+        }
     }
 
     //this method will be called once (we won't really touch this a lot)
@@ -88,6 +95,7 @@ public class GameLauncher implements Screen {
             }
         }
         virus.update();
+        virus1.update();
     }
 
     /*
@@ -108,8 +116,9 @@ public class GameLauncher implements Screen {
         batch.begin();
         //render stuff here
         tiledMapBorders.drawTilesAndSets(batch);
-        player.draw(batch);
         virus.draw(batch);
+        virus1.draw(batch);
+        player.draw(batch);
         batch.end();
     }
 

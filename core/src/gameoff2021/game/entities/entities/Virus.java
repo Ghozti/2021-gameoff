@@ -9,13 +9,21 @@ import gameoff2021.game.utilities.Constants;
 public class Virus extends GameSprite {
 
     boolean movingRight = true, movingLeft = false;
+    float maxX, minX, speed;
+    Rectangle playerHitbox;
+    Player player;
 
-    public Virus(){
+    public Virus(float initX, float initY, float maxX, float minX, float speed, Player player){
+        this.player = player;
+        this.playerHitbox = player.getHitbox();
+        this.maxX = maxX;
+        this.minX = minX;
+        this.speed = speed;
         setDebug(true);
         createSprite(new Sprite(atlas.findRegion("badlogic")));
         setTexture(atlas.findRegion("badlogic"));
         createHitbox(new Rectangle());
-        setPosition(53 * 30, 19 * 30);
+        setPosition(initX, initY);
         setOrigin(0,0);
         setUnScaledWidth(Constants.Player.UNSCALED_WIDTH);
         setUnscaledHeight(Constants.Player.UNSCALED_HEIGHT);
@@ -31,19 +39,22 @@ public class Virus extends GameSprite {
     @Override
     public void update() {
 
-        if (getPositionArr()[0] == 1860){
+        if(getHitbox().overlaps(playerHitbox)){
+            player.isTouchedByNPC = true;
+        }
+
+        if (getPositionArr()[0] >= maxX){
             movingLeft = true;
             movingRight = false;
-        }else if (getPositionArr()[0] == 1590){
+        }else if (getPositionArr()[0] <= minX){
             movingRight = true;
             movingLeft = false;
         }
 
-        if (getPositionArr()[0] != 1860 && !movingLeft){
-            updatePosition(1.5f,0);
-        }else if(getPositionArr()[0] != 1590 && !movingRight){
-
-            updatePosition(-1.5f,0);
+        if (getPositionArr()[0] <= maxX && !movingLeft){
+            updatePosition(speed,0);
+        }else if(getPositionArr()[0] >= minX && !movingRight){
+            updatePosition(-speed,0);
         }
     }
 }

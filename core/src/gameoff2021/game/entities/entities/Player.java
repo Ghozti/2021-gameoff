@@ -10,7 +10,7 @@ import gameoff2021.game.utilities.Constants;
 
 public class Player extends GameSprite {
 
-    public boolean isTouched;
+    public boolean isTouchedByWall, isTouchedByNPC;
 
     public Player() {
         setDebug(true);
@@ -45,8 +45,15 @@ public class Player extends GameSprite {
 
     public void handlePositioning(){
         //TODO do this
+
+        if (isTouchedByNPC){
+            setPosition(Constants.Player.INIT_X, Constants.Player.INIT_Y);
+            isTouchedByNPC = false;
+        }
+
         float[] posChange = PlayerInput.inputProcessor();
-        if (isTouched){
+
+        if (isTouchedByWall){
 
             float posChangeX = 0, posChangeY = 0;
 
@@ -69,6 +76,7 @@ public class Player extends GameSprite {
             }
             updatePosition(posChangeX,posChangeY);
         }
+
         updatePosition(posChange[0], posChange[1]);
     }
 
