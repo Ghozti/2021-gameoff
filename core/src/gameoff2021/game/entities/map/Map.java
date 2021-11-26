@@ -112,6 +112,12 @@ public class Map {
         addInteractiveTileSets(30,30,58,21);
         addInteractiveTileSets(30,30,60,21);
         addInteractiveTileSets(30,30,62,21);
+
+        //map borders
+        addInteractiveTileSets(30,1080,0,36);//far left border
+        addInteractiveTileSets(30,1080,63,36);//far right border
+        addInteractiveTileSets(1920,30,0,36);//top border
+        addInteractiveTileSets(1920,30,0,1);
     }
 
     private void addInteractiveTile(float x, float y){

@@ -46,7 +46,7 @@ public class GameLauncher implements Screen {
     Player player;
     Virus virus, virus1 ;
 
-    boolean developMode = false;//for when we are developing we can set the viewport to see the entire screen
+    boolean developMode = true;//for when we are developing we can set the viewport to see the entire screen
 
     //this is the constructor, where we will initialize our fields. (camera, viewport, batch, etc)
     public GameLauncher(){

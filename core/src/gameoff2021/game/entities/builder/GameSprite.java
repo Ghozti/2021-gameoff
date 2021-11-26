@@ -169,6 +169,6 @@ public abstract class GameSprite {
 
     //will draw the hitbox if the game is in debug mode
     public void drawHitBox(Batch batch) {
-        batch.draw(debugTexture, hitbox.x + hitBoxOffSetX, hitbox.y + hitBoxOffSetY, hitbox.width, hitbox.height);
+        batch.draw(debugTexture, hitbox.x, hitbox.y, width, height);
     }
 }
