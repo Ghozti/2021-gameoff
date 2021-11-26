@@ -12,20 +12,19 @@ import gameoff2021.game.utilities.Constants;
  */
 
 public class PlayerInput {
-    public static float[] inputProcessor(){
-        float xchange = 0, ychange = 0;
+    public static char inputProcessor(){
         if (Gdx.input.isKeyPressed(Input.Keys.W)){
-            ychange = Constants.Player.MAX_SPEEDY;
+            return 'w';
         }
         if (Gdx.input.isKeyPressed(Input.Keys.S)){
-            ychange = -Constants.Player.MAX_SPEEDY;
+            return 's';
         }
         if (Gdx.input.isKeyPressed(Input.Keys.D)){
-            xchange = Constants.Player.MAX_SPEEDX;
+            return 'd';
         }
         if (Gdx.input.isKeyPressed(Input.Keys.A)){
-            xchange = -Constants.Player.MAX_SPEEDX;
+            return 'a';
         }
-        return new float[]{xchange, ychange};
+        return '*';
     }
 }

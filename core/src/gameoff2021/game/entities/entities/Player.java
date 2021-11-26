@@ -43,6 +43,8 @@ public class Player extends GameSprite {
         }
     }
 
+    char lastKeyPressed = '*';
+
     public void handlePositioning(){
         //TODO do this
 
@@ -51,33 +53,48 @@ public class Player extends GameSprite {
             isTouchedByNPC = false;
         }
 
-        float[] posChange = PlayerInput.inputProcessor();
-
         if (isTouchedByWall){
-
-            float posChangeX = 0, posChangeY = 0;
-
-            if (posChange[0] != 0) {
-                if (posChange[0] > 0) {
-                    posChangeX = -1;
-                } else if (posChange[0] < 0) {
-                    posChangeX = 1;
-                }
-            }else {
-                posChangeX = 0;
+            System.out.println("***");
+            switch (lastKeyPressed){
+                case 'w':
+                    updatePosition(0,-1);
+                    break;
+                case 's':
+                    updatePosition(0,1);
+                    break;
+                case 'a':
+                    updatePosition(1,0);
+                    break;
+                case 'd':
+                    updatePosition(-1,0);
+                    break;
             }
-
-            if (posChange[1] != 0) {
-                if (posChange[1] > 0) {
-                    posChangeY = -1;
-                } else if (posChange[1] < 0) {
-                    posChangeY = 1;
-                }
-            }
-            updatePosition(posChangeX,posChangeY);
+            isTouchedByWall = false;
         }
 
-        updatePosition(posChange[0], posChange[1]);
+        float xChange = 0, yChange = 0;
+        char keyPressed = PlayerInput.inputProcessor();
+
+        if (keyPressed != '*'){
+            lastKeyPressed = keyPressed;
+        }
+
+        switch (keyPressed){
+            case 'w':
+                yChange = Constants.Player.MAX_SPEEDY;
+                break;
+            case 's':
+                yChange = -Constants.Player.MAX_SPEEDY;
+                break;
+            case 'a':
+                xChange = -Constants.Player.MAX_SPEEDX;
+                break;
+            case 'd':
+                xChange = Constants.Player.MAX_SPEEDX;
+                break;
+        }
+
+        updatePosition(xChange,yChange);
     }
 
     @Override

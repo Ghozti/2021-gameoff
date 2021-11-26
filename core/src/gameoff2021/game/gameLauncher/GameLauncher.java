@@ -46,7 +46,7 @@ public class GameLauncher implements Screen {
     Player player;
     Virus virus, virus1 ;
 
-    boolean developMode = true;//for when we are developing we can set the viewport to see the entire screen
+    boolean developMode = false;//for when we are developing we can set the viewport to see the entire screen
 
     //this is the constructor, where we will initialize our fields. (camera, viewport, batch, etc)
     public GameLauncher(){
@@ -89,9 +89,7 @@ public class GameLauncher implements Screen {
         player.update();
         for(TileSet tileSet : tiledMapBorders.getTileSets()){
             if (tileSet.isTouched(player.getHitbox())) {
-                //player.isTouched = true;
-            }else {
-                //player.isTouched = false;
+                player.isTouchedByWall = true;
             }
         }
         virus.update();
