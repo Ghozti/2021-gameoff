@@ -13,6 +13,7 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import gameoff2021.game.entities.entities.FireWall;
 import gameoff2021.game.entities.entities.Player;
 import gameoff2021.game.entities.entities.Virus;
 import gameoff2021.game.entities.map.Map;
@@ -45,6 +46,7 @@ public class GameLauncher implements Screen {
     //game objects (player, map etc)
     Player player;
     Virus virus, virus1 ;
+    FireWall fireWall;
 
     boolean developMode = true;//for when we are developing we can set the viewport to see the entire screen
 
@@ -54,6 +56,7 @@ public class GameLauncher implements Screen {
         player = new Player();
         virus = new Virus(53 * 30,19 * 30, 1860, 1590,1.5f, player);//these are the arguments for the virus near the top right corner
         virus1 = new Virus(11 * 30, 30, 31 * 30, 11 * 30,.80f, player);
+        fireWall = new FireWall();
         tiledMapBorders = new Map();
 
         //map and cam
@@ -94,6 +97,7 @@ public class GameLauncher implements Screen {
         }
         virus.update();
         virus1.update();
+        fireWall.update();
     }
 
     /*
@@ -116,6 +120,7 @@ public class GameLauncher implements Screen {
         tiledMapBorders.drawTilesAndSets(batch);
         virus.draw(batch);
         virus1.draw(batch);
+        fireWall.draw(batch);
         player.draw(batch);
         batch.end();
     }

@@ -1,27 +1,83 @@
 
 sprites.png
-size: 512, 512
+size: 2048, 512
 format: RGBA8888
 filter: Nearest, Nearest
 repeat: none
 badlogic
   rotate: false
-  xy: 2, 104
+  xy: 2, 136
   size: 256, 256
   orig: 256, 256
   offset: 0, 0
   index: -1
-hitboxDebug
+flame1
+  rotate: false
+  xy: 292, 362
+  size: 30, 30
+  orig: 30, 30
+  offset: 0, 0
+  index: -1
+flame2
+  rotate: false
+  xy: 1028, 396
+  size: 30, 30
+  orig: 30, 30
+  offset: 0, 0
+  index: -1
+flame3
+  rotate: false
+  xy: 260, 362
+  size: 30, 30
+  orig: 30, 30
+  offset: 0, 0
+  index: -1
+flame4
+  rotate: false
+  xy: 260, 330
+  size: 30, 30
+  orig: 30, 30
+  offset: 0, 0
+  index: -1
+flame5
   rotate: false
   xy: 2, 2
+  size: 30, 30
+  orig: 30, 30
+  offset: 0, 0
+  index: -1
+flame6
+  rotate: false
+  xy: 1028, 428
+  size: 30, 30
+  orig: 30, 30
+  offset: 0, 0
+  index: -1
+flame7
+  rotate: false
+  xy: 1060, 428
+  size: 30, 30
+  orig: 30, 30
+  offset: 0, 0
+  index: -1
+hitboxDebug
+  rotate: false
+  xy: 2, 34
   size: 100, 100
   orig: 100, 100
   offset: 0, 0
   index: -1
-sol
+tiles
   rotate: false
-  xy: 260, 328
-  size: 32, 32
-  orig: 32, 32
+  xy: 2, 394
+  size: 1024, 64
+  orig: 1024, 64
+  offset: 0, 0
+  index: -1
+virus
+  rotate: false
+  xy: 104, 104
+  size: 30, 30
+  orig: 30, 30
   offset: 0, 0
   index: -1
