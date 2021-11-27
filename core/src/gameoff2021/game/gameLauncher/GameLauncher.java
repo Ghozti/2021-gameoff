@@ -58,16 +58,31 @@ public class GameLauncher implements Screen {
         virus1 = new Virus(11 * 30, 30, 31 * 30, 11 * 30,.80f, player);
 
         miniFireWall = new FireWall(player,60,570);//the fire wall at the mid left
+        miniFireWall.getSprite().setRotation(90);
 
         topRightWall = new FireWall(player, 300,870);
+        topRightWall.getSprite().setRotation(90);
+
         bottomRightWall = new FireWall(player,300,180);
+        bottomRightWall.getSprite().setRotation(90);
+
         topLeftWall = new FireWall(player,1590,870);
+        topLeftWall.getSprite().setRotation(270);
+
         bottomLeftWall = new FireWall(player,1590,180);
+        bottomLeftWall.getSprite().setRotation(270);
 
         coreWall1 = new FireWall(player,30 * 32,30 * 12);//bottom core wall
+
         coreWall2 = new FireWall(player,30 * 32,30 * 26);//top core wall
+        coreWall2.getSprite().setRotation(180);
+
         coreWall3 = new FireWall(player,30 * 23,30 * 19);//left core wall
+        coreWall3.getSprite().setRotation(270);
+
         coreWall4 = new FireWall(player,30 * 41,30 * 19);//right core wall
+        coreWall4.getSprite().setRotation(90);
+
 
         //map and cam
         tiledMapBorders = new Map();

@@ -19,7 +19,7 @@ public class FireWall extends GameSprite {
         setTexture(atlas.findRegion("flame1"));
         createHitbox(new Rectangle());
         setPosition(x, y);
-        setOrigin(0,0);
+        setOrigin(15,15);
         setUnScaledWidth(30);
         setUnscaledHeight(30);
         setScale(1);
