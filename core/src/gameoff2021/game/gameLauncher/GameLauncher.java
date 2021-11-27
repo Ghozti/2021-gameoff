@@ -46,7 +46,7 @@ public class GameLauncher implements Screen {
     //game objects (player, map etc)
     Player player;
     Virus virus, virus1 ;
-    FireWall fireWall;
+    FireWall miniFireWall, topRightWall, bottomRightWall, topLeftWall, bottomLeftWall, coreWall1, coreWall2, coreWall3 , coreWall4;
 
     boolean developMode = true;//for when we are developing we can set the viewport to see the entire screen
 
@@ -56,10 +56,21 @@ public class GameLauncher implements Screen {
         player = new Player();
         virus = new Virus(53 * 30,19 * 30, 1860, 1590,1.5f, player);//these are the arguments for the virus near the top right corner
         virus1 = new Virus(11 * 30, 30, 31 * 30, 11 * 30,.80f, player);
-        fireWall = new FireWall();
-        tiledMapBorders = new Map();
+
+        miniFireWall = new FireWall(player,60,570);//the fire wall at the mid left
+
+        topRightWall = new FireWall(player, 300,870);
+        bottomRightWall = new FireWall(player,300,180);
+        topLeftWall = new FireWall(player,1590,870);
+        bottomLeftWall = new FireWall(player,1590,180);
+
+        coreWall1 = new FireWall(player,30 * 32,30 * 12);//bottom core wall
+        coreWall2 = new FireWall(player,30 * 32,30 * 26);//top core wall
+        coreWall3 = new FireWall(player,30 * 23,30 * 19);//left core wall
+        coreWall4 = new FireWall(player,30 * 41,30 * 19);//right core wall
 
         //map and cam
+        tiledMapBorders = new Map();
         loader = new TmxMapLoader();
         map = loader.load("untitled.tmx");
         renderer = new OrthogonalTiledMapRenderer(map);
@@ -97,7 +108,18 @@ public class GameLauncher implements Screen {
         }
         virus.update();
         virus1.update();
-        fireWall.update();
+
+        miniFireWall.update();
+
+        topRightWall.update();
+        bottomRightWall.update();
+        topLeftWall.update();
+        bottomLeftWall.update();
+
+        coreWall1.update();
+        coreWall2.update();
+        coreWall3.update();
+        coreWall4.update();
     }
 
     /*
@@ -118,10 +140,24 @@ public class GameLauncher implements Screen {
         batch.begin();
         //render stuff here
         tiledMapBorders.drawTilesAndSets(batch);
+
         virus.draw(batch);
         virus1.draw(batch);
-        fireWall.draw(batch);
+
+        miniFireWall.draw(batch);
+
+        topRightWall.draw(batch);
+        bottomRightWall.draw(batch);
+        topLeftWall.draw(batch);
+        bottomLeftWall.draw(batch);
+
+        coreWall1.draw(batch);
+        coreWall2.draw(batch);
+        coreWall3.draw(batch);
+        coreWall4.draw(batch);
+
         player.draw(batch);
+
         batch.end();
     }
 

@@ -10,12 +10,15 @@ import gameoff2021.game.utilities.Constants;
 
 public class FireWall extends GameSprite {
 
-    public FireWall(){
+    Player player;
+
+    public FireWall(Player player, float x, float y){
+        this.player = player;
         setDebug(true);
         createSprite(new Sprite(atlas.findRegion("flame1")));
         setTexture(atlas.findRegion("flame1"));
         createHitbox(new Rectangle());
-        setPosition(60, 570);
+        setPosition(x, y);
         setOrigin(0,0);
         setUnScaledWidth(30);
         setUnscaledHeight(30);
@@ -52,6 +55,10 @@ public class FireWall extends GameSprite {
                 }
             }
             setTexture(atlas.findRegion("flame"+currentTextureNum));
+        }
+
+        if (player.getHitbox().overlaps(getHitbox())){
+            player.isTouchedByNPC = true;
         }
     }
 }
