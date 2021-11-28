@@ -7,10 +7,7 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.utils.ScreenUtils;
-import gameoff2021.game.entities.entities.FireWall;
-import gameoff2021.game.entities.entities.Key;
-import gameoff2021.game.entities.entities.Player;
-import gameoff2021.game.entities.entities.Virus;
+import gameoff2021.game.entities.entities.*;
 import gameoff2021.game.entities.map.Map;
 import gameoff2021.game.entities.map.TileSet;
 
@@ -42,6 +39,7 @@ public class GameLauncher implements Screen {
     Virus virus, virus1 ;
     FireWall miniFireWall, topRightWall, bottomRightWall, topLeftWall, bottomLeftWall, coreWall1, coreWall2, coreWall3 , coreWall4;
     Key topRightKey, bottomRightKey, topLeftKey, bottomLeftKey;
+    Lever topRightCornerLever, bottomRightCornerLever, TopLeftCornerLever, bottomLeftCornerLever;
 
     boolean developMode = true;//for when we are developing we can set the viewport to see the entire screen
 
@@ -85,6 +83,9 @@ public class GameLauncher implements Screen {
         bottomLeftKey = new Key(player, 30 * 5, 30 * 5);
         topRightKey = new Key(player, 30 * 58, 30 * 31);
         bottomRightKey = new Key(player, 30 * 58, 30 * 5);
+
+        //levers
+        topRightCornerLever = new Lever(player,bottomRightWall, 30 * 3, 30 * 20);
 
         //map and cam
         tiledMapBorders = new Map();
