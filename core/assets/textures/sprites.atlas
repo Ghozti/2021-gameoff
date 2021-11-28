@@ -6,77 +6,84 @@ filter: Nearest, Nearest
 repeat: none
 badlogic
   rotate: false
-  xy: 2, 136
+  xy: 2, 168
   size: 256, 256
   orig: 256, 256
   offset: 0, 0
   index: -1
 flame1
   rotate: false
-  xy: 292, 362
+  xy: 2, 2
   size: 30, 30
   orig: 30, 30
   offset: 0, 0
   index: -1
 flame2
   rotate: false
-  xy: 1028, 396
+  xy: 1060, 460
   size: 30, 30
   orig: 30, 30
   offset: 0, 0
   index: -1
 flame3
   rotate: false
-  xy: 260, 362
+  xy: 260, 394
   size: 30, 30
   orig: 30, 30
   offset: 0, 0
   index: -1
 flame4
   rotate: false
-  xy: 260, 330
+  xy: 292, 394
   size: 30, 30
   orig: 30, 30
   offset: 0, 0
   index: -1
 flame5
   rotate: false
-  xy: 2, 2
+  xy: 2, 34
   size: 30, 30
   orig: 30, 30
   offset: 0, 0
   index: -1
 flame6
   rotate: false
-  xy: 1028, 428
+  xy: 1028, 460
   size: 30, 30
   orig: 30, 30
   offset: 0, 0
   index: -1
 flame7
   rotate: false
-  xy: 1060, 428
+  xy: 260, 362
   size: 30, 30
   orig: 30, 30
   offset: 0, 0
   index: -1
 hitboxDebug
   rotate: false
-  xy: 2, 34
+  xy: 2, 66
   size: 100, 100
   orig: 100, 100
   offset: 0, 0
   index: -1
+key
+  rotate: false
+  xy: 1028, 428
+  size: 30, 30
+  orig: 30, 30
+  offset: 0, 0
+  index: -1
 tiles
   rotate: false
-  xy: 2, 394
+  xy: 2, 426
   size: 1024, 64
   orig: 1024, 64
   offset: 0, 0
   index: -1
 virus
   rotate: false
-  xy: 104, 104
+  xy: 104, 136
   size: 30, 30
   orig: 30, 30
   offset: 0, 0

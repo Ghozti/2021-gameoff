@@ -1,23 +1,16 @@
 package gameoff2021.game.gameLauncher;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.assets.loaders.FileHandleResolver;
-import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.TiledMap;
-import com.badlogic.gdx.maps.tiled.TiledMapTileSet;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.utils.ScreenUtils;
-import com.badlogic.gdx.utils.viewport.StretchViewport;
-import com.badlogic.gdx.utils.viewport.Viewport;
 import gameoff2021.game.entities.entities.FireWall;
 import gameoff2021.game.entities.entities.Player;
 import gameoff2021.game.entities.entities.Virus;
 import gameoff2021.game.entities.map.Map;
-import gameoff2021.game.entities.map.Tile;
 import gameoff2021.game.entities.map.TileSet;
 
 public class GameLauncher implements Screen {
