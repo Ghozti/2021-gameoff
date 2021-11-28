@@ -8,6 +8,7 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.utils.ScreenUtils;
 import gameoff2021.game.entities.entities.FireWall;
+import gameoff2021.game.entities.entities.Key;
 import gameoff2021.game.entities.entities.Player;
 import gameoff2021.game.entities.entities.Virus;
 import gameoff2021.game.entities.map.Map;
@@ -40,6 +41,7 @@ public class GameLauncher implements Screen {
     Player player;
     Virus virus, virus1 ;
     FireWall miniFireWall, topRightWall, bottomRightWall, topLeftWall, bottomLeftWall, coreWall1, coreWall2, coreWall3 , coreWall4;
+    Key topRightKey, bottomRightKey, topLeftKey, bottomLeftKey;
 
     boolean developMode = true;//for when we are developing we can set the viewport to see the entire screen
 
@@ -47,9 +49,11 @@ public class GameLauncher implements Screen {
     public GameLauncher(){
         batch = new SpriteBatch();
         player = new Player();
+
         virus = new Virus(53 * 30,19 * 30, 1860, 1590,1.5f, player);//these are the arguments for the virus near the top right corner
         virus1 = new Virus(11 * 30, 30, 31 * 30, 11 * 30,.80f, player);
 
+        //firewalls
         miniFireWall = new FireWall(player,60,570);//the fire wall at the mid left
         miniFireWall.getSprite().setRotation(90);
 
@@ -76,6 +80,11 @@ public class GameLauncher implements Screen {
         coreWall4 = new FireWall(player,30 * 41,30 * 19);//right core wall
         coreWall4.getSprite().setRotation(90);
 
+        //keys
+        topLeftKey = new Key(player, 30 * 5, 30 * 31);
+        bottomLeftKey = new Key(player, 30 * 5, 30 * 5);
+        topRightKey = new Key(player, 30 * 58, 30 * 31);
+        bottomRightKey = new Key(player, 30 * 58, 30 * 5);
 
         //map and cam
         tiledMapBorders = new Map();
@@ -119,15 +128,20 @@ public class GameLauncher implements Screen {
 
         miniFireWall.update();
 
-        topRightWall.update();
-        bottomRightWall.update();
-        topLeftWall.update();
-        bottomLeftWall.update();
+        //topRightWall.update();
+        //bottomRightWall.update();
+        //topLeftWall.update();
+        //bottomLeftWall.update();
 
         coreWall1.update();
         coreWall2.update();
         coreWall3.update();
         coreWall4.update();
+
+        topLeftKey.update();
+        bottomLeftKey.update();
+        topRightKey.update();
+        bottomRightKey.update();
     }
 
     /*
@@ -163,6 +177,11 @@ public class GameLauncher implements Screen {
         coreWall2.draw(batch);
         coreWall3.draw(batch);
         coreWall4.draw(batch);
+
+        topLeftKey.draw(batch);
+        bottomLeftKey.draw(batch);
+        topRightKey.draw(batch);
+        bottomRightKey.draw(batch);
 
         player.draw(batch);
 

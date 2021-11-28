@@ -1,0 +1,55 @@
+
+flames.png
+size: 256, 64
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+flame1
+  rotate: false
+  xy: 194, 2
+  size: 30, 30
+  orig: 30, 30
+  offset: 0, 0
+  index: -1
+flame2
+  rotate: false
+  xy: 98, 2
+  size: 30, 30
+  orig: 30, 30
+  offset: 0, 0
+  index: -1
+flame3
+  rotate: false
+  xy: 34, 2
+  size: 30, 30
+  orig: 30, 30
+  offset: 0, 0
+  index: -1
+flame4
+  rotate: false
+  xy: 162, 2
+  size: 30, 30
+  orig: 30, 30
+  offset: 0, 0
+  index: -1
+flame5
+  rotate: false
+  xy: 66, 2
+  size: 30, 30
+  orig: 30, 30
+  offset: 0, 0
+  index: -1
+flame6
+  rotate: false
+  xy: 2, 2
+  size: 30, 30
+  orig: 30, 30
+  offset: 0, 0
+  index: -1
+flame7
+  rotate: false
+  xy: 130, 2
+  size: 30, 30
+  orig: 30, 30
+  offset: 0, 0
+  index: -1
