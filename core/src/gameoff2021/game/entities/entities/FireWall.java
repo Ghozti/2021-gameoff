@@ -11,6 +11,7 @@ import gameoff2021.game.utilities.Constants;
 public class FireWall extends GameSprite {
 
     Player player;
+    boolean unlocked = false;
 
     public FireWall(Player player, float x, float y){
         this.player = player;
@@ -30,35 +31,39 @@ public class FireWall extends GameSprite {
 
     @Override
     public void draw(Batch batch) {
-        delta++;
-        drawSprite(batch);
-        drawHitBox(batch);
+        if (unlocked) {
+            delta++;
+            drawSprite(batch);
+            drawHitBox(batch);
+        }
     }
 
     @Override
     public void update() {
-        if (delta >= 15){
-            delta = 0;
-            if (currentTextureNum != target){
-                if (target == 8){
-                    currentTextureNum++;
-                    if (currentTextureNum == 8){
-                        currentTextureNum = 7;
-                        target = 0;
-                    }
-                }else {
-                    currentTextureNum--;
-                    if (currentTextureNum == 0){
-                        currentTextureNum = 1;
-                        target = 8;
+        if (!unlocked) {
+            if (delta >= 15) {
+                delta = 0;
+                if (currentTextureNum != target) {
+                    if (target == 8) {
+                        currentTextureNum++;
+                        if (currentTextureNum == 8) {
+                            currentTextureNum = 7;
+                            target = 0;
+                        }
+                    } else {
+                        currentTextureNum--;
+                        if (currentTextureNum == 0) {
+                            currentTextureNum = 1;
+                            target = 8;
+                        }
                     }
                 }
+                setTexture(atlas.findRegion("flame" + currentTextureNum));
             }
-            setTexture(atlas.findRegion("flame"+currentTextureNum));
-        }
 
-        if (player.getHitbox().overlaps(getHitbox())){
-            player.isTouchedByNPC = true;
+            if (player.getHitbox().overlaps(getHitbox())) {
+                player.isTouchedByNPC = true;
+            }
         }
     }
 }

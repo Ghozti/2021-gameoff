@@ -27,4 +27,8 @@ public class PlayerInput {
         }
         return '*';
     }
+
+    public static boolean isSpacePressed(){
+        return Gdx.input.isKeyPressed(Input.Keys.SPACE);
+    }
 }
