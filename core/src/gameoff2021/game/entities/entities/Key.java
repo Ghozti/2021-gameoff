@@ -4,10 +4,12 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Rectangle;
 import gameoff2021.game.entities.builder.GameSprite;
+import gameoff2021.game.ui.PlayerInput;
 
 public class Key extends GameSprite {
 
     Player player;
+    boolean hasBeenCollected;
 
     public Key(Player player, float x, float y){
         this.player = player;
@@ -24,13 +26,20 @@ public class Key extends GameSprite {
 
     @Override
     public void draw(Batch batch) {
-        drawSprite(batch);
+        if (!hasBeenCollected) {
+            drawSprite(batch);
+            drawHitBox(batch);
+        }
     }
 
     @Override
     public void update() {
-        if (getHitbox().overlaps(player.getHitbox())){
-            player.isTouchedByKey = true;
+        if (!hasBeenCollected) {
+            if (getHitbox().overlaps(player.getHitbox()) && PlayerInput.isSpacePressed()) {
+                player.isTouchedByKey = true;
+                hasBeenCollected = true;
+                player.keyCount++;
+            }
         }
     }
 }

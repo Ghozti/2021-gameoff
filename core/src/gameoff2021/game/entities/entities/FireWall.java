@@ -11,9 +11,23 @@ import gameoff2021.game.utilities.Constants;
 public class FireWall extends GameSprite {
 
     Player player;
-    boolean unlocked = false;
+    boolean unlocked, special;
 
     public FireWall(Player player, float x, float y){
+        this.player = player;
+        setDebug(true);
+        createSprite(new Sprite(atlas.findRegion("flame1")));
+        setTexture(atlas.findRegion("flame1"));
+        createHitbox(new Rectangle());
+        setPosition(x, y);
+        setOrigin(15,15);
+        setUnScaledWidth(30);
+        setUnscaledHeight(30);
+        setScale(1);
+    }
+
+    public FireWall(Player player, float x, float y, boolean special){
+        this.special = special;
         this.player = player;
         setDebug(true);
         createSprite(new Sprite(atlas.findRegion("flame1")));
@@ -31,7 +45,7 @@ public class FireWall extends GameSprite {
 
     @Override
     public void draw(Batch batch) {
-        if (unlocked) {
+        if (!unlocked) {
             delta++;
             drawSprite(batch);
             drawHitBox(batch);
@@ -61,8 +75,14 @@ public class FireWall extends GameSprite {
                 setTexture(atlas.findRegion("flame" + currentTextureNum));
             }
 
-            if (player.getHitbox().overlaps(getHitbox())) {
-                player.isTouchedByNPC = true;
+            if (!special) {
+                if (player.getHitbox().overlaps(getHitbox())) {
+                    player.isTouchedByNPC = true;
+                }
+            }else {
+                if(player.keyCount >= 2){
+                    unlocked = true;
+                }
             }
         }
     }

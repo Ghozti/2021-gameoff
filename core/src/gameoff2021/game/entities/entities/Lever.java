@@ -35,6 +35,7 @@ public class Lever extends GameSprite {
         if (getHitbox().overlaps(player.getHitbox())){
             if (PlayerInput.isSpacePressed()){
                 respectiveFireWall.unlocked = true;
+                setTexture(atlas.findRegion("rightlever"));
             }
         }
     }
