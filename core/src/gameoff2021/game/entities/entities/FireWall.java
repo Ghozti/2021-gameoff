@@ -56,7 +56,7 @@ public class FireWall extends GameSprite {
     @Override
     public void update() {
         if (!unlocked) {
-            if (delta >= 15) {
+            if (delta >= 7.5) {
                 delta = 0;
                 if (currentTextureNum != target) {
                     if (target == 8) {
