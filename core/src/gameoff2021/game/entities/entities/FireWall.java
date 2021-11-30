@@ -11,7 +11,7 @@ import gameoff2021.game.utilities.Constants;
 public class FireWall extends GameSprite {
 
     Player player;
-    boolean unlocked, special;
+    boolean unlocked, special, specialCondition;
 
     public FireWall(Player player, float x, float y){
         this.player = player;
@@ -26,7 +26,8 @@ public class FireWall extends GameSprite {
         setScale(1);
     }
 
-    public FireWall(Player player, float x, float y, boolean special){
+    public FireWall(Player player, float x, float y, boolean special,boolean specialCondition){
+        this.specialCondition = specialCondition;
         this.special = special;
         this.player = player;
         setDebug(true);
@@ -80,7 +81,7 @@ public class FireWall extends GameSprite {
                     player.isTouchedByNPC = true;
                 }
             }else {
-                if(player.keyCount >= 2){
+                if(specialCondition){
                     unlocked = true;
                 }
             }

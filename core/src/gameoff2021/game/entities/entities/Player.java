@@ -10,7 +10,7 @@ import gameoff2021.game.utilities.Constants;
 public class Player extends GameSprite {
 
     public boolean isTouchedByWall, isTouchedByNPC, isTouchedByKey;
-    int keyCount = 0;
+    public int keyCount = 0;
 
     public Player() {
         setDebug(true);
