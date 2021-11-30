@@ -41,6 +41,10 @@ public class FireWall extends GameSprite {
         setScale(1);
     }
 
+    public void updateSpecialCondition(boolean specialCondition){
+        this.specialCondition = specialCondition;
+    }
+
     float delta = 0;
     byte currentTextureNum = 1, target = 8;
 
@@ -83,6 +87,10 @@ public class FireWall extends GameSprite {
             }else {
                 if(specialCondition){
                     unlocked = true;
+                }else {
+                    if (player.getHitbox().overlaps(getHitbox())) {
+                        player.isTouchedByNPC = true;
+                    }
                 }
             }
         }

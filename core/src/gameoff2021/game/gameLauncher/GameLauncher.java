@@ -131,6 +131,7 @@ public class GameLauncher implements Screen {
         virus1.update();
 
         miniFireWall.update();
+        miniFireWall.updateSpecialCondition(player.keyCount >= 2);
 
         topRightWall.update();
         bottomRightWall.update();
@@ -138,9 +139,13 @@ public class GameLauncher implements Screen {
         bottomLeftWall.update();
 
         coreWall1.update();
+        coreWall1.updateSpecialCondition(player.keyCount >= 4);
         coreWall2.update();
+        coreWall2.updateSpecialCondition(player.keyCount >= 4);
         coreWall3.update();
+        coreWall3.updateSpecialCondition(player.keyCount >= 4);
         coreWall4.update();
+        coreWall4.updateSpecialCondition(player.keyCount >= 4);
 
         topLeftKey.update();
         bottomLeftKey.update();
