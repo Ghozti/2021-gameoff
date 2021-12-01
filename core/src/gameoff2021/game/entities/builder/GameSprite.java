@@ -53,8 +53,8 @@ public abstract class GameSprite {
         this.position[0] = x;
         this.position[1] = y;
         sprite.setPosition(this.position[0], this.position[1]);
-        hitbox.x = position[0];
-        hitbox.y = position[1];
+        hitbox.x = position[0] + hitBoxOffSetX;
+        hitbox.y = position[1] + hitBoxOffSetY;
     }
 
     public void setUnScaledWidth(float width) {
@@ -103,8 +103,8 @@ public abstract class GameSprite {
         position[0] += xChange;
         position[1] += yChange;
         sprite.setPosition(position[0], position[1]);
-        hitbox.x = position[0];
-        hitbox.y = position[1];
+        hitbox.x = position[0] + hitBoxOffSetX;
+        hitbox.y = position[1] + hitBoxOffSetY;
     }
 
     public void setDebug(boolean debug) {

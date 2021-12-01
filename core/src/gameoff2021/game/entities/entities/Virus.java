@@ -20,24 +20,35 @@ public class Virus extends GameSprite {
         this.minX = minX;
         this.speed = speed;
         setDebug(true);
-        createSprite(new Sprite(atlas.findRegion("badlogic")));
-        setTexture(atlas.findRegion("badlogic"));
+        createSprite(new Sprite(atlas.findRegion("virus")));
+        setTexture(atlas.findRegion("virus"));
         createHitbox(new Rectangle());
         setPosition(initX, initY);
         setOrigin(0,0);
         setUnScaledWidth(Constants.Player.UNSCALED_WIDTH);
         setUnscaledHeight(Constants.Player.UNSCALED_HEIGHT);
-        setScale(Constants.Player.SCALE);
+        setScale(1);
     }
+
+    float delta = 0;
 
     @Override
     public void draw(Batch batch) {
         drawSprite(batch);
         drawHitBox(batch);
+        delta++;
     }
 
     @Override
     public void update() {
+
+        if (delta <= 10) {
+            setTexture(atlas.findRegion("virus"));
+        }else if (delta >= 11 ){
+            setTexture(atlas.findRegion("virus2"));
+        }if (delta >= 21){
+            delta = 0;
+        }
 
         if(getHitbox().overlaps(playerHitbox)){
             player.isTouchedByNPC = true;

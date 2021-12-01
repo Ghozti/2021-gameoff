@@ -2,6 +2,7 @@ package gameoff2021.game.gameLauncher;
 
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
@@ -10,6 +11,7 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import gameoff2021.game.entities.entities.*;
 import gameoff2021.game.entities.map.Map;
 import gameoff2021.game.entities.map.TileSet;
+import gameoff2021.game.ui.GUI;
 
 public class GameLauncher implements Screen {
 
@@ -41,6 +43,10 @@ public class GameLauncher implements Screen {
     Key topRightKey, bottomRightKey, topLeftKey, bottomLeftKey;
     Lever topRightCornerLever, bottomRightCornerLever, topLeftCornerLever, bottomLeftCornerLever;
 
+    //font shit
+    GUI gui;
+    Batch batch2;
+
     boolean developMode = true;//for when we are developing we can set the viewport to see the entire screen
 
     //this is the constructor, where we will initialize our fields. (camera, viewport, batch, etc)
@@ -52,7 +58,7 @@ public class GameLauncher implements Screen {
         virus1 = new Virus(11 * 30, 30, 31 * 30, 11 * 30,.80f, player);
 
         //firewalls
-        miniFireWall = new FireWall(player,60,570,true, player.keyCount >= 2);//the fire wall at the mid left
+        miniFireWall = new FireWall(player,60,570,true, false);//the fire wall at the mid left
         miniFireWall.getSprite().setRotation(90);
 
         topRightWall = new FireWall(player, 300,870);
@@ -67,15 +73,15 @@ public class GameLauncher implements Screen {
         bottomLeftWall = new FireWall(player,1590,180);
         bottomLeftWall.getSprite().setRotation(270);
 
-        coreWall1 = new FireWall(player,30 * 32,30 * 12,true,player.keyCount >= 4);//bottom core wall
+        coreWall1 = new FireWall(player,30 * 32,30 * 12,false ,true);//bottom core wall
 
-        coreWall2 = new FireWall(player,30 * 32,30 * 26, true,player.keyCount >= 4);//top core wall
+        coreWall2 = new FireWall(player,30 * 32,30 * 26, false,true);//top core wall
         coreWall2.getSprite().setRotation(180);
 
-        coreWall3 = new FireWall(player,30 * 23,30 * 19,true,player.keyCount >= 4);//left core wall
+        coreWall3 = new FireWall(player,30 * 23,30 * 19,false, true);//left core wall
         coreWall3.getSprite().setRotation(270);
 
-        coreWall4 = new FireWall(player,30 * 41,30 * 19,true,player.keyCount >= 4);//right core wall
+        coreWall4 = new FireWall(player,30 * 41,30 * 19,false,true);//right core wall
         coreWall4.getSprite().setRotation(90);
 
         //keys
@@ -104,6 +110,9 @@ public class GameLauncher implements Screen {
             camera.viewportWidth = 144;//144
             camera.viewportHeight = 120;//120
         }
+
+        gui = new GUI();
+        batch2 = new SpriteBatch();
     }
 
     //this method will be called once (we won't really touch this a lot)
@@ -116,8 +125,12 @@ public class GameLauncher implements Screen {
     - this is the update method, where we will be updating our sprites and map. This method will be called in the render method since it's called repetitively.
     - we created this method in order to make the render method more read-able
      */
+
+    float delta = 0;
+
     public void update() {
         //call the sprite update methods here
+        delta++;
         camera.position.set(player.getCenter()[0], player.getCenter()[1], 0);//will change the camera x and y with the player's x and y
         camera.update();
         batch.setProjectionMatrix(camera.combined);
@@ -127,16 +140,17 @@ public class GameLauncher implements Screen {
         }
 
         player.update();
+
         for(TileSet tileSet : tiledMapBorders.getTileSets()){
             if (tileSet.isTouched(player.getHitbox())) {
                 player.isTouchedByWall = true;
             }
         }
+
         virus.update();
         virus1.update();
 
         miniFireWall.update();
-        miniFireWall.updateSpecialCondition(player.keyCount >= 2);
 
         topRightWall.update();
         bottomRightWall.update();
@@ -144,13 +158,9 @@ public class GameLauncher implements Screen {
         bottomLeftWall.update();
 
         coreWall1.update();
-        coreWall1.updateSpecialCondition(player.keyCount >= 4);
         coreWall2.update();
-        coreWall2.updateSpecialCondition(player.keyCount >= 4);
         coreWall3.update();
-        coreWall3.updateSpecialCondition(player.keyCount >= 4);
         coreWall4.update();
-        coreWall4.updateSpecialCondition(player.keyCount >= 4);
 
         topLeftKey.update();
         bottomLeftKey.update();
@@ -177,6 +187,17 @@ public class GameLauncher implements Screen {
         ScreenUtils.clear(0, 0, 0, 1);// will reset the screen to black
         renderer.setView(camera);
         renderer.render();
+
+        batch2.begin();
+
+        if (this.delta  <= 500){
+            gui.draw(batch2,"use w,a,s,d to move", 15, 110);
+            gui.draw(batch2,"collect all 4 corner keys to unlock the main core, \nbe careful of viruses as they will reset your progress",15, 70);
+        }
+
+        gui.draw(batch2, "keys collected: " + player.keyCount, 15, 1030);
+
+        batch2.end();
 
         batch.begin();
         //render stuff here
@@ -236,6 +257,7 @@ public class GameLauncher implements Screen {
     @Override
     public void dispose() {
         batch.dispose();
+        batch2.dispose();
         renderer.dispose();
         map.dispose();
     }

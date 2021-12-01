@@ -14,11 +14,11 @@ public class Player extends GameSprite {
 
     public Player() {
         setDebug(true);
-        createSprite(new Sprite(atlas.findRegion("badlogic")));
-        setTexture(atlas.findRegion("badlogic"));
+        createSprite(new Sprite(atlas.findRegion("player")));
+        setTexture(atlas.findRegion("player"));
         createHitbox(new Rectangle());
         setPosition(Constants.Player.INIT_X, Constants.Player.INIT_Y);
-        setOrigin(0,0);//sets the origin of the player to 0,0 from the sprite width/height
+        setOrigin(0,0);//sets the origin of the player to 0,0 from the sprite width
         setUnScaledWidth(Constants.Player.UNSCALED_WIDTH);
         setUnscaledHeight(Constants.Player.UNSCALED_HEIGHT);
         setScale(Constants.Player.SCALE);
@@ -26,7 +26,7 @@ public class Player extends GameSprite {
 
     //for the camera to center on the player
     public float[] getCenter(){
-        return new float[] {getPositionArr()[0] + getWidth() / 2 , getPositionArr()[1] + getHeight() / 2};
+        return new float[] {(getPositionArr()[0] + getWidth() / 2), (getPositionArr()[1] + getHeight() / 2)};
     }
 
     char lastKeyPressed = '*';

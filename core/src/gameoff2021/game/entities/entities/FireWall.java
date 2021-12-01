@@ -11,7 +11,7 @@ import gameoff2021.game.utilities.Constants;
 public class FireWall extends GameSprite {
 
     Player player;
-    boolean unlocked, special, specialCondition;
+    boolean unlocked, miniwall, corewall;
 
     public FireWall(Player player, float x, float y){
         this.player = player;
@@ -26,9 +26,9 @@ public class FireWall extends GameSprite {
         setScale(1);
     }
 
-    public FireWall(Player player, float x, float y, boolean special,boolean specialCondition){
-        this.specialCondition = specialCondition;
-        this.special = special;
+    public FireWall(Player player, float x, float y, boolean miniwall,boolean corewall){
+        this.miniwall = miniwall;
+        this.corewall = corewall;
         this.player = player;
         setDebug(true);
         createSprite(new Sprite(atlas.findRegion("flame1")));
@@ -39,10 +39,6 @@ public class FireWall extends GameSprite {
         setUnScaledWidth(30);
         setUnscaledHeight(30);
         setScale(1);
-    }
-
-    public void updateSpecialCondition(boolean specialCondition){
-        this.specialCondition = specialCondition;
     }
 
     float delta = 0;
@@ -83,18 +79,16 @@ public class FireWall extends GameSprite {
                 setTexture(atlas.findRegion("flame" + currentTextureNum));
             }
 
-            if (!special) {
+            if (!unlocked) {
                 if (player.getHitbox().overlaps(getHitbox())) {
                     player.isTouchedByNPC = true;
                 }
-            }else {
-                if(specialCondition){
-                    unlocked = true;
-                }else {
-                    if (player.getHitbox().overlaps(getHitbox())) {
-                        player.isTouchedByNPC = true;
-                    }
-                }
+            }
+
+            if(corewall){
+                unlocked = player.keyCount >= 4;
+            }else if(miniwall) {
+                unlocked = player.keyCount >= 2;
             }
         }
     }
