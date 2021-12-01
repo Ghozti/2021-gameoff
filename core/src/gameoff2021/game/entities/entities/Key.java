@@ -34,6 +34,9 @@ public class Key extends GameSprite {
 
     @Override
     public void update() {
+        if (player.reset){
+            hasBeenCollected = false;
+        }
         if (!hasBeenCollected) {
             if (getHitbox().overlaps(player.getHitbox()) && PlayerInput.isSpacePressed()) {
                 player.isTouchedByKey = true;

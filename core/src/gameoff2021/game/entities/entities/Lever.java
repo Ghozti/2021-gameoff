@@ -38,5 +38,9 @@ public class Lever extends GameSprite {
                 setTexture(atlas.findRegion("rightlever"));
             }
         }
+
+        if (player.reset){
+            setTexture(atlas.findRegion("leftlever"));
+        }
     }
 }

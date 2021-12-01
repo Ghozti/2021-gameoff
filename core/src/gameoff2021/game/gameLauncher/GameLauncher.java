@@ -121,6 +121,11 @@ public class GameLauncher implements Screen {
         camera.position.set(player.getCenter()[0], player.getCenter()[1], 0);//will change the camera x and y with the player's x and y
         camera.update();
         batch.setProjectionMatrix(camera.combined);
+
+        if (player.reset){
+            player.reset = false;
+        }
+
         player.update();
         for(TileSet tileSet : tiledMapBorders.getTileSets()){
             if (tileSet.isTouched(player.getHitbox())) {

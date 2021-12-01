@@ -9,8 +9,8 @@ import gameoff2021.game.utilities.Constants;
 
 public class Player extends GameSprite {
 
-    public boolean isTouchedByWall, isTouchedByNPC, isTouchedByKey;
-    public int keyCount = 0;
+    public boolean isTouchedByWall, isTouchedByNPC, isTouchedByKey, reset;
+    public int keyCount = 60;
 
     public Player() {
         setDebug(true);
@@ -32,15 +32,14 @@ public class Player extends GameSprite {
     char lastKeyPressed = '*';
 
     public void handlePositioning(){
-        //TODO do this
-
         if (isTouchedByNPC){
             setPosition(Constants.Player.INIT_X, Constants.Player.INIT_Y);
             isTouchedByNPC = false;
+            reset = true;
+            keyCount = 0;
         }
 
         if (isTouchedByWall){
-            System.out.println("***");
             switch (lastKeyPressed){
                 case 'w':
                     updatePosition(0,-1);
