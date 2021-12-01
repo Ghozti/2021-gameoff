@@ -1,5 +1,6 @@
 package gameoff2021.game.entities.entities;
 
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Rectangle;
@@ -10,6 +11,8 @@ public class Lever extends GameSprite {
 
     Player player;
     FireWall respectiveFireWall;
+    Sound whenActivatedSound;
+    //TODO impliment sound
 
     public Lever(Player player, FireWall respectiveFireWall ,float x, float y){
         this.player = player;
